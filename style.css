@@ -1,0 +1,299 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom right, #ff7e5f, #feb47b);
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: colorChange 10s infinite;
+}
+
+@keyframes colorChange {
+    0% { color: #ff7e5f; }
+    25% { color: #feb47b; }
+    50% { color: #7bed9f; }
+    75% { color: #70a1ff; }
+    100% { color: #ff7e5f; }
+}
+
+#todo-container {
+    max-width: 600px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="time"] {
+    width: calc(70% - 10px);
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ff7e5f;
+    border-radius: 5px;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus, input[type="time"]:focus {
+    border: 2px solid #ff7e5f;
+    outline: none;
+}
+
+.checkmark {
+    color: green;
+    display: none; /* Hidden initially */
+    font-size: 1.2em;
+    margin-left: 5px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.checkmark.visible {
+    opacity: 1;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ff7e5f;
+}
+
+#error-message, #duplicate-error-message {
+    color: #ff5722; /* Warm orange for warnings */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 204, 0.8); /* Light background */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ff7e5f;
+    position: relative; /* For positioning the close button */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.8s ease-in-out, opacity 0.8s ease-in-out, margin 0.8s ease-in-out, padding 0.8s ease-in-out;
+}
+
+#error-message.show, #duplicate-error-message.show {
+    max-height: 100px;
+    opacity: 1;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ff5722;
+}
+
+#task-list-heading {
+    text-align: center;
+    color: #ff4500;
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+#completed-count {
+    text-align: center;
+    color: #28a745;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#task-list {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ff7e5f;
+}
+
+th {
+    background-color: #ff5722;
+    color: white;
+}
+
+.task {
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.3s;
+    animation: taskAppear 0.5s ease-out;
+}
+
+.task:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #ccc;
+}
+
+.tick {
+    cursor: pointer;
+    color: green;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: scale(0);
+}
+
+.tick-checked {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#delete-button {
+    display: none; /* Initially hidden */
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#delete-button:hover {
+    background-color: #c82333;
+}
+
+.status-cell {
+    cursor: pointer;
+    text-align: center;
+}
+
+.delete-btn {
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+#congratulations-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    min-width: 300px;
+    animation: modalAppear 0.5s ease-out;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.modal-excellent {
+    background: linear-gradient(135deg, #7bed9f, #2ed573);
+    color: white;
+}
+
+.modal-good {
+    background: linear-gradient(135deg, #70a1ff, #1e90ff);
+    color: white;
+}
+
+.modal-moderate {
+    background: linear-gradient(135deg, #ffb142, #ff793f);
+    color: white;
+}
+
+.close-modal {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+}
+
+@keyframes taskAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.actions-cell {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#total-tasks-count {
+    text-align: center;
+    color: #2f3542;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.completion-progress {
+    width: 100%;
+    height: 10px;
+    background-color: #f1f2f6;
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    transition: width 0.5s ease-in-out;
+}

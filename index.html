@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&family=Open+Sans:wght@600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+<div id="todo-container">
+    <h1>To-Do List</h1>
+    <div id="error-message">
+        <span class="close-btn" onclick="dismissError('error-message')">✖</span>
+        Activity and Start Time are required.
+    </div>
+    <div id="duplicate-error-message">
+        <span class="close-btn" onclick="dismissError('duplicate-error-message')">✖</span>
+        This task already exists!
+    </div>
+    
+    <!-- Add progress bar -->
+    <div class="completion-progress">
+        <div class="progress-bar" style="width: 0%"></div>
+    </div>
+    <div id="completed-count">Completed Tasks: 0</div>
+
+    <label for="task">Activity:</label>
+    <input type="text" id="task" placeholder="Enter your activity" oninput="updateCheckmark('task-check')">
+    <span class="checkmark" id="task-check">&#10003;</span>
+
+    <label for="start-time">Start Time:</label>
+    <input type="time" id="start-time" oninput="updateCheckmark('start-time-check')">
+    <span class="checkmark" id="start-time-check">&#10003;</span>
+
+    <label for="end-time">End Time:</label>
+    <input type="time" id="end-time" oninput="updateCheckmark('end-time-check')">
+    <span class="checkmark" id="end-time-check">&#10003;</span>
+
+    <button onclick="addTask()">Add Task</button>
+    
+    <div id="task-list-heading">Your Tasks:</div>
+    <table id="task-list">
+        <thead>
+            <tr>
+                <th>Activity</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="task-list-body"></tbody>
+    </table>
+</div>
+
+<div id="congratulations-modal">
+    <span class="close-modal" onclick="closeModal()">×</span>
+    <h2 id="modal-title"></h2>
+    <p id="modal-message"></p>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
