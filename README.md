@@ -17,15 +17,11 @@ A clean and interactive To-Do List web application built with **HTML**, **CSS**,
 3. Click the checkmark to mark a task as completed.
 4. Use the trash icon (🗑) to delete tasks.
 
-## Live Demo
-
-Check out the live demo [here](#) (replace with your GitHub Pages link or hosted URL).
-
 ## Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/TheGravityFalls-11/To-Do-List.git
    ```
 2. Open `index.html` in your browser.
 
@@ -34,7 +30,6 @@ Check out the live demo [here](#) (replace with your GitHub Pages link or hosted
 - **HTML**: Page structure.
 - **CSS**: Styling and animations.
 - **JavaScript**: Task management and progress tracking.
-- **Google Fonts**: Typography.
 
 ## Contributing
 
@@ -43,4 +38,6 @@ Contributions are welcome! Fork the repository, create a new branch, and submit 
 ## License
 
 Licensed under the [MIT License](LICENSE).
+
+
 
